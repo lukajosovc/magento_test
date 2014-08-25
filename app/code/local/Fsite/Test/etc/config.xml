@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Fsite_Test>
+            <version>0.1.0</version>
+        </Fsite_Test>
+    </modules>
+    <global>
+        <models>
+            <test>
+                <class>Fsite_Test_Model</class>
+                <resourceModel>test_mysql4</resourceModel>
+            </test>
+            <test_mysql4>
+                <class>Fsite_Test_Model_Mysql4</class>
+                <entities>
+                    <test>
+                        <table>test</table>
+                    </test>
+                </entities>
+            </test_mysql4>
+        </models>
+        <resources>
+            <test_setup>
+                <setup>
+                    <module>Fsite_Test</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </test_setup>
+            <test_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </test_write>
+            <test_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </test_read>
+        </resources>
+        <helpers>
+            <test>
+                <class>Fsite_Test_Helper</class>
+            </test>  
+        </helpers>
+        <blocks>
+            <test>
+                <class>Fsite_Test_Block</class>
+            </test>
+        </blocks>
+    </global>
+    <admin>
+        <routers>
+            <test>
+                <use>admin</use>
+                <args>
+                    <module>Fsite_Test</module>
+                    <frontName>test</frontName>
+                </args>
+            </test>
+        </routers>
+    </admin>
+    <adminhtml>
+    	<menu>
+    		<fsitemenu translate="title" module="test">
+                <title>Fsite Test</title>
+                <sort_order>60</sort_order>
+                <children>
+                    <test translate="title" module="test">
+                   		<title>Test Grid</title>
+                        <action>test/adminhtml_test</action>
+                    </test>
+				</children>
+            </fsitemenu>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <test>
+                            <title>Fsite Test Module</title>
+                            <sort_order>200</sort_order>
+                        </test>
+                    </children>
+                </admin>
+            </resources>   
+        </acl>
+    </adminhtml>
+</config>
